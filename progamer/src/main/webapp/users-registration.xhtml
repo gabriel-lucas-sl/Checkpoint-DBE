@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="content">
+		<p:messages id="messages">
+			<p:autoUpdate />
+		</p:messages>
+
+		<h:form>
+			<p:card class="form-card">
+				<f:facet name="title">
+        			New User
+   				</f:facet>
+
+				<div class="p-field p-grid input">
+					<label for="name" class="p-col-fixed" style="width: 100px">Your
+						completed name</label>
+					<div class="p-col">
+						<p:inputText id="name"
+							value="#{userRegistrationBean.userRegistration.name}"
+							required="true" requiredMessage="The name field is not valid"
+							validatorMessage="Name field needs more than 3 characteres">
+							<f:validateLength minimum="3"></f:validateLength>
+							<f:ajax event="blur" render="messages" />
+						</p:inputText>
+					</div>
+				</div>
+				<div class="p-field p-grid input">
+					<label for="email" class="p-col-fixed" style="width: 100px">Your
+						e-mail</label>
+					<div class="p-col">
+						<p:inputText id="email"
+							value="#{userRegistrationBean.userRegistration.email}"
+							required="true" requiredMessage="The email field is not valid"
+							validatorMessage="You should have @ and a .com in your email">
+							<f:validateRegex
+								pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+							<f:ajax event="blur" render="messages" />
+						</p:inputText>
+					</div>
+				</div>
+				<div class="p-field p-grid input">
+					<label for="birthday" class="p-col-fixed" style="width: 100px">Birthday
+						Date</label>
+					<div class="p-col">
+						<p:calendar id="date" value="#{userRegistrationBean.userRegistration.birthday}"
+							yearRange="-80:c+0" navigator="true" required="true"
+							requiredMessage="You should set up your birthday" style="width: 100px">
+							<f:ajax event="dateSelect" render="messages" />
+							<h:message for="birthday" />
+						</p:calendar>
+					</div>
+				</div>
+				<div class="p-field p-grid input">
+					<label for="password" class="p-col-fixed" style="width: 100px">Password</label>
+					<div class="p-col">
+						<p:inputText type="password" id="password"
+							value="#{userRegistrationBean.userRegistration.password}"
+							required="true" requiredMessage="The password field is not valid"
+							validatorMessage="Password should have five characters">
+							<f:validateLength minimum="5"></f:validateLength>
+							<f:ajax event="blur" render="messages" />
+						</p:inputText>
+					</div>
+				</div>
+
+				<f:facet name="footer">
+					<p:commandButton icon="pi pi-check" value="Save"
+						action="#{userRegistrationBean.save}">
+						<f:ajax execute="@form" render="messages" />
+					</p:commandButton>
+					<p:commandButton icon="pi pi-times" value="Cancel"
+						styleClass="ui-button-secondary" style="margin-left: .5em" />
+				</f:facet>
+			</p:card>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+body {
+	background-color: #ddd;
+}
+
+.form-card {
+	width: 25em;
+	margin: 1em auto;
+} 
+
+.setup-list-item {
+	display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+::ng-deep .input {
+	margin-top: 10px;
+}
+
+::ng-deep .ui-messages ul {
+    margin-left: 35px;
+}
