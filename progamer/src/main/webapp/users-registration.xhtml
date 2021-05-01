@@ -61,8 +61,8 @@
 						<p:inputText type="password" id="password"
 							value="#{userRegistrationBean.userRegistration.password}"
 							required="true" requiredMessage="The password field is not valid"
-							validatorMessage="Password should have five characters">
-							<f:validateLength minimum="5"></f:validateLength>
+							validatorMessage="Password should have at least 8 characters">
+							<f:validateLength minimum="8"></f:validateLength>
 							<f:ajax event="blur" render="messages" />
 						</p:inputText>
 					</div>
